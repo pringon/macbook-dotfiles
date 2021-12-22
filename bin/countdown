@@ -1,0 +1,33 @@
+#!/bin/bash
+
+print_time() {
+  echo "${1}: $(( $2 / 60)):$(( $2 % 60))"
+}
+
+next_tick() {
+  print_time "Target" "$target"
+  print_time "Current" "$elapsed"
+  echo "Press [Ctrl+C] to exit."
+  : $(( elapsed = elapsed + 1))
+  sleep 1
+}
+
+case $1 in
+    ''|*[!0-9]*) target=60 ;;
+    *) target=$(( "$1" * 60 )) ;;
+esac
+
+elapsed=0
+  
+while [ "$target" -ne "$elapsed" ] 
+do
+  next_tick
+done
+
+mpv ~/bin/bell.mp3 --no-terminal --length=3 --volume=45 &
+
+next_tick
+while [ "$target" -ne "$elapsed" ] 
+do
+  next_tick
+done
