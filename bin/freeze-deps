@@ -1,6 +1,0 @@
-#!/bin/bash
-
-DEPS_FILE="$HOME/.config/deps.txt"
-
-brew list --formula --versions > $DEPS_FILE
-brew list --cask --versions >> $DEPS_FILE

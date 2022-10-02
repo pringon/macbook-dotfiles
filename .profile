@@ -39,7 +39,6 @@ alias python='python3.9'
 alias pip='pip3.9'
 alias python3='python3.9'
 alias pip3='pip3.9'
-alias brew='brew'
 alias ~='cd ~'
 
 function show() {
@@ -65,20 +64,20 @@ function to() {
   local vcs
   local repo
   if [ -z "$2" ]; then
-    vcs="bb"
+    vcs="gh"
     repo=$1
   else
     vcs=$1
     repo=$2
   fi
 
-  if [ "$vcs" -eq "sandbox" ]; then
-    mkdir -p ~/dev/sandbox/${repo}
-    cd ~/dev/sandbox/${repo}
+  if [ "$vcs" == "scratch" ]; then
+    mkdir -p ~/dev/scratch/${repo}
+    cd ~/dev/scratch/${repo}
   else
     cd ~/dev/${vcs}/${repo}
     if [ "$?" -ne 0 ]; then
-      clone $1 $2
+      clone ${vcs} ${repo}
       cd ~/dev/${vcs}/${repo}
     fi
   fi
@@ -88,7 +87,7 @@ function clone() {
   local vcs
   local repo
   if [ -z "$2" ]; then
-    vcs="bb"
+    vcs="gh"
     repo=$1
   else
     vcs=$1
@@ -97,7 +96,7 @@ function clone() {
 
   case ${vcs} in
     "gh")
-      extern git clone https://pringon@github.com/${repo}.git ~/dev/gh/${repo}
+      git clone git@github.com:pringon/macbook-dotfiles.git ~/dev/gh/${repo}
       ;;
     *)
       echo "Error: unknown vcs ${vcs}"
@@ -123,6 +122,7 @@ export GOPRIVATE="*.dev.bloomberg.com"
 export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
 
 #. ~/.git-prompt.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
