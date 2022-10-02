@@ -118,10 +118,7 @@ fi
 export PATH="/home/dgoje/go/bin:${PATH}"
 export GOPATH="/home/dgoje/go/"
 export CGO_ENABLED=0
-export GOPRIVATE="*.dev.bloomberg.com"
-export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
 
-#. ~/.git-prompt.sh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export PYENV_ROOT="$HOME/.pyenv"
