@@ -93,7 +93,7 @@ function clone() {
 
   case ${vcs} in
     "gh")
-      git clone git@github.com:pringon/macbook-dotfiles.git ~/dev/gh/${repo}
+      git clone git@github.com:${repo}.git ~/dev/${vcs}/${repo}
       ;;
     *)
       echo "Error: unknown vcs ${vcs}"
