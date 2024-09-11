@@ -32,10 +32,8 @@ alias la='ls -AG'
 alias l='ls -CFG'
 alias dot='/usr/bin/git --git-dir=${HOME}/dotfiles/ --work-tree=${HOME} '
 alias vim='nvim'
-alias python='python3.9'
-alias pip='pip3.9'
-alias python3='python3.9'
-alias pip3='pip3.9'
+alias python='python3'
+alias pip='pip3'
 alias ~='cd ~'
 
 function show() {
@@ -101,14 +99,14 @@ function clone() {
   esac
 }
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "/usr/local/bin" ]; then
+    export PATH="/usr/local/bin:$PATH"
 fi
-
-# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Go
@@ -122,3 +120,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(fnm env --use-on-cd)"
+. "$HOME/.cargo/env"
