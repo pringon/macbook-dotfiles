@@ -32,8 +32,6 @@ alias la='ls -AG'
 alias l='ls -CFG'
 alias dot='/usr/bin/git --git-dir=${HOME}/dotfiles/ --work-tree=${HOME} '
 alias vim='nvim'
-alias python='python3'
-alias pip='pip3'
 alias ~='cd ~'
 
 function show() {
@@ -120,4 +118,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(fnm env --use-on-cd)"
+
+export PATH="~/.config/emacs/bin:$PATH"
+
 . "$HOME/.cargo/env"
